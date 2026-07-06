@@ -1,0 +1,237 @@
+/* ========================================================
+   RegionAutocomplete — Typeahead for Belgian regions
+   ======================================================== */
+
+.region-autocomplete {
+  position: relative;
+}
+
+/* Input wrapper */
+.region-autocomplete__input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 8px 16px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  cursor: text;
+  transition: all 0.2s ease;
+}
+
+.region-autocomplete__input-wrapper:hover {
+  background: #fff;
+  border-color: #c7d2fe;
+}
+
+.region-autocomplete__input-wrapper--focused {
+  background: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #6366f1;
+}
+
+/* Location icon */
+.region-autocomplete__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: #9ca3af;
+}
+
+/* Input area — wraps chips + text input */
+.region-autocomplete__input-area {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Text input */
+.region-autocomplete__input {
+  flex: 1;
+  min-width: 120px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.9375rem;
+  color: #111827;
+  padding: 4px 0;
+}
+
+.region-autocomplete__input::placeholder {
+  color: #9ca3af;
+}
+
+/* Clear button */
+.region-autocomplete__clear {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.region-autocomplete__clear:hover {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+/* ---- Chips ---- */
+.region-autocomplete__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  white-space: nowrap;
+  animation: chipIn 0.15s ease-out;
+}
+
+@keyframes chipIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.region-autocomplete__chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: transparent;
+  color: #6366f1;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.region-autocomplete__chip-remove:hover {
+  background: #c7d2fe;
+  color: #312e81;
+}
+
+/* ---- Dropdown ---- */
+.region-autocomplete__dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  z-index: 50;
+  animation: dropIn 0.12s ease-out;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Option item */
+.region-autocomplete__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.region-autocomplete__option:hover,
+.region-autocomplete__option--highlighted {
+  background: #eef2ff;
+}
+
+.region-autocomplete__option-icon {
+  flex-shrink: 0;
+  color: #9ca3af;
+}
+
+.region-autocomplete__option--highlighted .region-autocomplete__option-icon {
+  color: #6366f1;
+}
+
+.region-autocomplete__option-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9375rem;
+  color: #1f2937;
+}
+
+.region-autocomplete__option-name {
+  font-weight: 500;
+}
+
+.region-autocomplete__option-french {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.region-autocomplete__option-province {
+  color: #9ca3af;
+  font-size: 0.8125rem;
+}
+
+/* Province badge */
+.region-autocomplete__badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: 9999px;
+}
+
+/* No results */
+.region-autocomplete__no-results {
+  padding: 16px 20px;
+  color: #9ca3af;
+  font-size: 0.9375rem;
+  text-align: center;
+}
+
+/* Scrollbar styling */
+.region-autocomplete__dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.region-autocomplete__dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.region-autocomplete__dropdown::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.region-autocomplete__dropdown::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
